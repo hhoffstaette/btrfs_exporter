@@ -13,3 +13,5 @@ add_executable(btrfs_exporter
 
 target_link_libraries(btrfs_exporter prometheus-cpp-core prometheus-cpp-pull stdc++fs)
 
+install (TARGETS btrfs_exporter DESTINATION bin)
+
