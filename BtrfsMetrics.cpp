@@ -18,7 +18,7 @@ namespace btrfs_exporter {
 		_sectorsize = sectorsize(_fsid);
 	}
 
-	vector<MetricFamily> BtrfsMetrics::Collect() {
+	vector<MetricFamily> BtrfsMetrics::Collect() const {
 		// TODO: protect all this with a mutex
 
 		cout << "Collecting BtrfsMetrics for fs: " << _fsid << " label: " << label(_fsid) << "\n";

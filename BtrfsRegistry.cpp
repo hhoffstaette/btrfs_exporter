@@ -12,7 +12,7 @@ namespace btrfs_exporter {
 	using namespace prometheus;
 	using namespace std;
 
-	vector<MetricFamily> BtrfsRegistry::Collect() {
+	vector<MetricFamily> BtrfsRegistry::Collect() const {
 		// TODO: protect all this with a mutex
 
 		// find mounted filesystems

@@ -14,10 +14,10 @@ namespace btrfs_exporter {
 	class BtrfsRegistry : public prometheus::Collectable {
 
 	private:
-		std::map<std::string, std::unique_ptr<BtrfsMetrics>> _metrics;
+		mutable std::map<std::string, std::unique_ptr<BtrfsMetrics>> _metrics;
 
 	public:
-		std::vector<prometheus::MetricFamily> Collect() override;
+		std::vector<prometheus::MetricFamily> Collect() const;
 	};
 
 };

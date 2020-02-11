@@ -17,9 +17,9 @@ namespace btrfs_exporter {
 		long _sectorsize;
 
 	public:
-		explicit BtrfsMetrics(std::string &fsid);
+		BtrfsMetrics(std::string &fsid);
 
-		std::vector<prometheus::MetricFamily> Collect() override;
+		std::vector<prometheus::MetricFamily> Collect() const;
 	};
 
 };

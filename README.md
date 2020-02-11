@@ -12,7 +12,7 @@ the exporter is running are already properly detected and accounted for.
 
 Dependencies
 ------------
-Only [prometheus-cpp](https://github.com/jupp0r/prometheus-cpp) is required;
+Only [prometheus-cpp >= 0.8.0](https://github.com/jupp0r/prometheus-cpp) is required;
 since it is still being stabilized it's best to install directly from master for now.
 
 [Gentoo](https://www.gentoo.org) users can find an ebuild
