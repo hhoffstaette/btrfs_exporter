@@ -29,7 +29,7 @@ namespace btrfs {
         vector<string> filesystems;
 
         if (btrfs_is_available()) {
-            for (auto &entry: directory_iterator(BTRFS_SYSFS_ROOT)) {
+            for (auto& entry: directory_iterator(BTRFS_SYSFS_ROOT)) {
                 string fsid = entry.path().filename();
                 if (fsid != "features") {
                     filesystems.push_back(fsid);
@@ -63,7 +63,7 @@ namespace btrfs {
     vector<string> devices(const string& fsid) {
         vector<string> devices;
 
-        for (auto &entry: directory_iterator(BTRFS_SYSFS_ROOT / fsid / "devices")) {
+        for (auto& entry: directory_iterator(BTRFS_SYSFS_ROOT / fsid / "devices")) {
             devices.push_back(entry.path().filename());
         }
 
@@ -73,7 +73,7 @@ namespace btrfs {
     vector<string> features(const string& fsid) {
         vector<string> features;
 
-        for (auto &entry: directory_iterator(BTRFS_SYSFS_ROOT / fsid / "features")) {
+        for (auto& entry: directory_iterator(BTRFS_SYSFS_ROOT / fsid / "features")) {
             features.push_back(entry.path().filename());
         }
 

@@ -10,14 +10,14 @@ namespace btrfs_exporter {
 	class BtrfsMetrics : public prometheus::Collectable {
 
 	private:
-		std::unique_ptr<prometheus::Registry> _registry;
-		std::string _fsid;
-		long _clone_alignment;
-		long _nodesize;
-		long _sectorsize;
+		const std::unique_ptr<prometheus::Registry> _registry;
+		const std::string _fsid;
+		const long _clone_alignment;
+		const long _nodesize;
+		const long _sectorsize;
 
 	public:
-		BtrfsMetrics(std::string &fsid);
+		BtrfsMetrics(const std::string& fsid);
 
 		std::vector<prometheus::MetricFamily> Collect() const;
 	};

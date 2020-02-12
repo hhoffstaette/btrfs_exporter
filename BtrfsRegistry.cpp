@@ -19,12 +19,12 @@ namespace btrfs_exporter {
 		vector<string> fsids = mounted_filesystems();
 
 		// purge stale entries from existing metrics
-		std::experimental::erase_if(_metrics, [&fsids](auto &entry) {
+		std::experimental::erase_if(_metrics, [&fsids](auto& entry) {
 			return find(fsids.begin(), fsids.end(), entry.first) == fsids.end();
 		});
 
 		// create metrics for new filesystems
-		for (string &fsid: fsids) {
+		for (string& fsid: fsids) {
 			if (_metrics[fsid] == nullptr) {
 				_metrics[fsid] = make_unique<BtrfsMetrics>(fsid);
 			}
@@ -35,7 +35,7 @@ namespace btrfs_exporter {
 		allmetrics.reserve(_metrics.size() * 16);
 
 		// collect all metrics
-		for (auto &fs: _metrics) {
+		for (auto& fs: _metrics) {
 			vector<MetricFamily> fsmetrics = fs.second->Collect();
 			allmetrics.insert(allmetrics.end(), fsmetrics.begin(), fsmetrics.end());
 		}
