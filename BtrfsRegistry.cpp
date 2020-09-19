@@ -1,8 +1,4 @@
 
-#include <algorithm>
-#include <experimental/map>
-#include <unordered_set>
-
 #include "BtrfsRegistry.h"
 #include "btrfs.h"
 
@@ -19,15 +15,13 @@ namespace btrfs_exporter {
 		vector<string> fsids = mounted_filesystems();
 
 		// purge stale entries from existing metrics
-		std::experimental::erase_if(_metrics, [&fsids](auto& entry) {
+		erase_if(_metrics, [&fsids](auto& entry) {
 			return find(fsids.begin(), fsids.end(), entry.first) == fsids.end();
 		});
 
 		// create metrics for new filesystems
 		for (string& fsid: fsids) {
-			if (_metrics[fsid] == nullptr) {
-				_metrics[fsid] = make_unique<BtrfsMetrics>(fsid);
-			}
+			_metrics.try_emplace(fsid, make_unique<BtrfsMetrics>(fsid));
 		}
 
 		// make room for all collected metrics
